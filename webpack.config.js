@@ -1,41 +1,52 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const HtmlWebPackPlugin = require("html-webpack-plugin")
+const path = require('path')
 
 module.exports = {
     entry: './src/js/index.jsx',
-        output: {
-        path: __dirname + '/public',
-        filename: './app.js'
+    output: {
+        path: path.resolve(__dirname, 'public'),
+        filename: './assets/js/app.js'
     },
     devServer: {
         port:8080,
         contentBase: './public'
     },
     resolve: {
-        extensions: ['.js', '.jsx'], 
+        extensions: ['', '.js', '.jsx'], 
         alias: {
             modules: __dirname + '/node_modules',
         }
     },
     plugins: [
-        new ExtractTextPlugin('app.css')
+        new ExtractTextPlugin('./assets/css/app.css', { allChunks: true }), 
+        new HtmlWebPackPlugin({
+            template: "./src/views/index.html",
+            filename: "./index.html"
+        })
     ],
     module: {
-        rules: [{
-            test: /.js[x]?$/,
-            loader: 'babel-loader',
-            exclude: /node_modules/,
-            query: {
-                presets: [ "@babel/preset-env", "@babel/preset-react"],
-                plugins: ['transform-object-rest-spread']
+        loaders: 
+        [
+            {
+                test: /.js[x]?$/,
+                loader: 'babel-loader',
+                exclude: [/node_modules/, /controllers/, /core/, /models/, /services/, /public/],
+                query: {
+                    presets: ['es2015', 'react'],
+                    plugins: ['transform-object-rest-spread'],
+                },
+            }, 
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+            }, 
+            {
+                test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
+                loader: "file?publicPath=../&name=./assets/fonts/[hash].[ext]"
             }
-        }, {
-            test: /\.css$/, 
-            loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
-        }, {
-            test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
-            loader: 'file'
-        }]
+        ]
     }
 }
 

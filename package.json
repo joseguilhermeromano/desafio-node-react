@@ -4,40 +4,41 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack --mode production",
-    "dev": "webpack --mode development",
-    "serve": "webpack-dev-server"
+    "dev": "webpack-dev-server --watch --progress --colors --inline --hot",
+    "production": "webpack --inline -p"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-preset-es2015": "^6.24.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
-    "bootstrap": "^4.6.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-jwt": "^6.0.0",
-    "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^3.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.19",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "^4.0.3",
-    "rootpath": "^0.1.2",
-    "url-loader": "^4.1.1",
-    "webpack-dev-server": "^3.7.2"
+    "rootpath": "^0.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.8",
-    "@babel/preset-env": "^7.13.9",
-    "@babel/preset-react": "^7.12.13",
-    "babel-loader": "^8.2.2",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0",
-    "html-loader": "^0.5.5",
-    "html-webpack-plugin": "^3.2.0",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.5"
+    "axios": "^0.15.3",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-react-html-attrs": "^2.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "bootstrap": "^3.3.7",
+    "css-loader": "^0.26.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "font-awesome": "^4.7.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   }
 }
