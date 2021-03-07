@@ -1,0 +1,4 @@
+{
+    "connectionString": "mongodb://admin:12345@127.0.0.1:27017/admin",
+    "secret": "12345"
+}
