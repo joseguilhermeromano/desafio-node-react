@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HtmlWebPackPlugin = require("html-webpack-plugin")
 const path = require('path')
+const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
     entry: './src/js/index.jsx',
@@ -20,11 +21,14 @@ module.exports = {
         }
     },
     plugins: [
-        new ExtractTextPlugin('./assets/css/app.css', { allChunks: true }), 
+        new ExtractTextPlugin('./assets/css/app.css', { allChunks: true }),
         new HtmlWebPackPlugin({
             template: "./src/views/index.html",
             filename: "./index.html"
-        })
+        }),
+        new CopyPlugin([
+                { from: "./src/views/htaccess/.htaccess", to: "./"},
+            ]),
     ],
     module: {
         loaders: 
@@ -44,7 +48,11 @@ module.exports = {
             }, 
             {
                 test: /\.woff|.woff2|.ttf|.eot|.svg*.*$/,
-                loader: "file?publicPath=../&name=./assets/fonts/[hash].[ext]"
+                loader: "file?publicPath=../../&name=assets/fonts/[hash].[ext]",
+            }, 
+            {   
+                test: /\.htaccess$/, 
+                loader: "file" 
             }
         ]
     }
