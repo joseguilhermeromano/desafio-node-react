@@ -8,11 +8,13 @@ module.exports = {
     entry: './src/js/index.jsx',
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: './assets/js/app.js'
+        filename: './assets/js/app.js', 
+        publicPath: '/'
     },
     devServer: {
         port:8080,
-        contentBase: './public'
+        contentBase: './public',
+        historyApiFallback: true
     },
     resolve: {
         extensions: ['', '.js', '.jsx'], 
